@@ -1,0 +1,4 @@
+#Wed May 17 13:37:22 WIB 2023
+base.0=C\:\\Users\\ACER SWIFT 3\\StudioProjects\\UTS\\coba_utsa\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
