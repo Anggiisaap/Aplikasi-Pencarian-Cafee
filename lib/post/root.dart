@@ -68,7 +68,7 @@ class _RootAppState extends State<RootApp> {
               setState(() {
                 _activeTab = index;
               },
-                      );
+             );
             },
           ),
         ),
