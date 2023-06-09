@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:coba_utsa/post/Category.dart';
-import 'package:coba_utsa/post/coffe_shop.dart';
+import 'package:coba_utsa/widgets/Category.dart';
+import 'package:coba_utsa/widgets/coffe_shop.dart';
 import 'package:coba_utsa/detail/detail_1.dart';
 import 'package:coba_utsa/detail/detail_2.dart';
 import 'package:coba_utsa/detail/detaill.dart';
+import 'package:coba_utsa/widgets/NavBar.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -12,7 +13,6 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.menu),
         title: const Text('Aplikasi Pencarian Cafee'),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -20,6 +20,16 @@ class MyHomePage extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: <Color>[Colors.black, Colors.green]),
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            children: const [
+              NavBar(),
+              ListTile(),
+            ],
           ),
         ),
       ),
@@ -102,7 +112,7 @@ class MyHomePage extends StatelessWidget {
                             cursorHeight: 20,
                             autofocus: false,
                             decoration: InputDecoration(
-                                hintText: "Cari Cafee Favoritmu",
+                                hintText: "Cari Cafee",
                                 prefixIcon: const Icon(Icons.search),
                                 border: OutlineInputBorder(
                                     borderSide: const BorderSide(
@@ -186,6 +196,7 @@ class MyHomePage extends StatelessWidget {
                           nameShop: "Kopi Kenangan",
                           rating: "4.8",
                           jamBuka: "10.00 - 23.00",
+                          favorit: "",
                         ),
                       ],
                     ),
@@ -246,6 +257,7 @@ class MyHomePage extends StatelessWidget {
                           nameShop: "Talk Coffe",
                           rating: "4.8",
                           jamBuka: "10.00 - 23.00",
+                          favorit: "",
                         ),
                       ],
                     ),
@@ -306,6 +318,7 @@ class MyHomePage extends StatelessWidget {
                           nameShop: "Koma Coffe",
                           rating: "4.8",
                           jamBuka: "10.00 - 23.00",
+                          favorit: "",
                         ),
                       ],
                     ),
