@@ -67,7 +67,8 @@ class _RootAppState extends State<RootApp> {
             onTap: () {
               setState(() {
                 _activeTab = index;
-              });
+              },
+                      );
             },
           ),
         ),
