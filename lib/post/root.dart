@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:coba_utsa/widgets/colors.dart';
-import 'package:coba_utsa/widgets/bottombar_item.dart';
 import 'package:coba_utsa/post/home_page.dart';
+import 'package:coba_utsa/post/profile.dart';
+import 'package:coba_utsa/post/favorit.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -11,78 +11,45 @@ class RootApp extends StatefulWidget {
 }
 
 class _RootAppState extends State<RootApp> {
-  int _activeTab = 0;
+  int _selectTabIndex = 0;
 
-  List<IconData> _tapIcons = [
-    Icons.home_rounded,
-    Icons.bookmark,
-    Icons.person_rounded,
-  ];
-
-  List<Widget> _pages = [
-    MyHomePage(),
-    MyHomePage(),
-    MyHomePage(),
-    MyHomePage(),
-  ];
+  void _onNavBarTapped(int index) {
+    setState(() {
+      _selectTabIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final _listPage = <Widget>[
+      MyHomePage(),
+      favorit(),
+      profile(),
+    ];
+
+    final _bottomNavBarItems = <BottomNavigationBarItem>[
+      const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark), label: "Favorit"),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.person_2_rounded), label: "Profil"),
+    ];
+
+    final _bottomNavBar = BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.green,
+      items: _bottomNavBarItems,
+      currentIndex: _selectTabIndex,
+      unselectedItemColor: Colors.blue,
+      selectedItemColor: Colors.white,
+      onTap: _onNavBarTapped,
+    );
+
     return Scaffold(
-      backgroundColor: appBgColor,
-      bottomNavigationBar: _buildBottomBar(),
-      body: _buildBarPage(),
-    );
-  }
-
-  Widget _buildBottomBar() {
-    return Container(
-      height: 75,
-      width: double.infinity,
-      padding: EdgeInsets.only(bottom: 15),
-      decoration: BoxDecoration(
-        color: bottomBarColor,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(25),
-          topRight: Radius.circular(25),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor.withOpacity(0.1),
-            blurRadius: .5,
-            spreadRadius: .5,
-            offset: const Offset(0, 1),
-          )
-        ],
+      body: Center(
+        child: _listPage[_selectTabIndex],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          _tapIcons.length,
-          (index) => BottomBarItem(
-            _tapIcons[index],
-            isActive: _activeTab == index,
-            activeColor: primary,
-            onTap: () {
-              setState(() {
-                _activeTab = index;
-              },
-             );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBarPage() {
-    return IndexedStack(
-      index: _activeTab,
-      children: List.generate(
-        _tapIcons.length,
-        (index) => _pages[index],
-      ),
+      bottomNavigationBar: _bottomNavBar,
     );
   }
 }
