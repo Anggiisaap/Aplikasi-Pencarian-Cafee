@@ -100,8 +100,7 @@ class _DetailPageState extends State<DetailPage2> {
                         Text("10.00 - 00.00",
                             style: GoogleFonts.montserrat(fontSize: 12))
                       ],
-                    ),
-                    
+                    )
                   ],
                 ),
               ),
